@@ -1,0 +1,30 @@
+{
+  "name": "event",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.18.0",
+    "jalali-moment": "^3.1.2",
+    "moment": "^2.22.1",
+    "moment-timezone": "^0.5.17",
+    "react": "^16.2.0",
+    "react-datepicker": "^1.4.1",
+    "react-datepicker-persian": "^1.0.2",
+    "react-datepicker2": "^1.0.0-alpha1",
+    "react-dom": "^16.2.0",
+    "react-moment": "^0.7.0",
+    "react-persian-datepicker": "^3.0.2",
+    "react-router": "^4.2.0",
+    "react-scripts": "1.1.0",
+    "react-websocket": "^2.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "persian-date": "^1.0.5"
+  }
+}
