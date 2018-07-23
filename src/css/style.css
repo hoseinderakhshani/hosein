@@ -20,6 +20,15 @@
     font-weight: normal;
     src:local('iransans') ,url("../fonts/iransans/IRANSansWeb.eot?") format("eot"), url("../fonts/iransans/IRANSansWeb.woff") format("woff"), url("../fonts/iransans/IRANSansWeb.ttf") format("truetype");
 }
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+/* Webkit browsers like Safari and Chrome */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 a:hover,
 a:active,
 a:focus,
@@ -300,6 +309,12 @@ body {
     position: relative;
     padding: 5px 15px;
 }
+.sidebar-left{
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
  .sidebar-left .sidebar{
     width: 255px;
     position: fixed;
@@ -313,67 +328,36 @@ body {
     height: 190px;
     width: 25%;
 }
-.notice {
-    border-radius: 4px;
-    margin-bottom: 25px;
-    height: 200px;
-    overflow-y: scroll;
-    position: relative;
+.notification .box{
+    border-top-right-radius: 25px;
+    margin-bottom: 10px;
+    border-radius: 25px;
+    /* box-shadow: 0 0 1px 0px #00000026;*/
 }
-.notice .head {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    position: fixed;
-    width: 202px;
-    padding: 5px 15px 0;
-    color: #bdbdbd;
-    border-bottom: 1px solid #bdbdbd;
-}
-.notice .head span{
-    position: relative;
-    cursor: pointer;
-}
-.notice .head span.active:before{
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 25%;
-    border-top: 7px solid #bdbdbd;
-    border-left: 7px solid transparent;
-    border-right: 7px solid transparent;
-}
-.notice .head span.active:after{
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: calc(25% + 1px);
-    border-top: 6px solid #fff;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-}
-.notice .text{
-    margin-top: 5px;
-}
-.notice ul li {
-    padding: 5px;
-    border-bottom: 1px solid #bdbdbd;
-    font-size: 0.85em;
-}
-.notice ul li:last-child(){
-    border-bottom:none;
-}
-.notice ul li img {
+.notification .box .image{
     width: 35px;
     height: 35px;
     border-radius: 50%;
-    object-fit: cover;
-    margin-left: 10px;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5px;
+    position: relative;
 }
-.notice ul li a {
-    color: inherit;
-    font-weight: 700;
+.notification .box .image img{
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+}
+.notification .box span{
+    color: #bdbdbd;
+    font-size: 11px;
 }
 .prfe-cor {
     margin-top: 15px;
@@ -916,7 +900,6 @@ body {
     border: 1px solid #FFC107;
     border-radius: 4px;
     padding: 5px 30px;
-    margin-top: 5px;
     font-size: 0.83em;
     font-family: inherit;
     -webkit-transition: all .3s ease-in-out;
@@ -927,9 +910,42 @@ body {
 }
 .clb-reg span{
     margin-left: 10px;
-    color: #BDBDBD; 
+    color: #BDBDBD;
     font-size: 1.28em;
     position: relative;
+
+}
+.clb-reg  span.signout{
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid #bdbdbd;
+    display: block;
+    z-index: 1;
+    cursor: pointer;
+}
+.clb-reg span.signout:before{
+    content: '';
+    width: 2px;
+    height: 10px;
+    background: #bdbdbd;
+    position: absolute;
+    top: -2px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 3;
+    border-radius: 15px;
+}
+.clb-reg span.signout:after{
+    content: '';
+    width: 16px;
+    height: 5px;
+    background: #fff;
+    z-index: 2;
+    position: absolute;
+    top: -3px;
+    left: 0;
 }
 .clb-reg span:active{
     color: #00BCD4;
@@ -1014,6 +1030,7 @@ body {
     background: #eee;
     padding: 5px;
     border-radius: 4px;
+    overflow: hidden;
 }
 .rate ul {
     margin-top: 5px;
@@ -1063,7 +1080,6 @@ body {
     height: 223px;
     margin-bottom: 30px;
     z-index: 1;
-    
 }
 .post .image{
     border-radius: 4px;
@@ -1581,6 +1597,7 @@ span.accept {
 .singlepost .post .header a{
     display: inline-block;
     color: #212121;
+    height: 100%;
 }
 .singlepost .post .header .image{
     width: 40px;
@@ -2390,6 +2407,21 @@ select.errorcheck{
     border-bottom: 1px solid #bdbdbd;
     font-family: inherit;
 }
+.descriptiontwoo .time input{
+    width: auto;
+    margin-right: 10px;
+    text-align: center;
+}
+.descriptiontwoo .time input:nth-of-type(1),.descriptiontwoo .time input:nth-of-type(2),.descriptiontwoo .time input:nth-of-type(3),.descriptiontwoo .time input:nth-of-type(4){
+    width: 35px;
+}
+.descriptiontwoo .time input:nth-of-type(2){
+    margin-left: 70px;
+    margin-right: 0px;
+}
+.descriptiontwoo .time input:nth-of-type(5){
+    width: 70px;
+}
 .descriptiontwoo input[type="date"]{
     color: #bdbdbd;
 }
@@ -2779,6 +2811,8 @@ select.errorcheck{
 .home span.forget{
     display: block;
     text-align: left;
+    color: #bdbdbd;
+    cursor: pointer;
 }
 .home span.forget a{
     color: #bdbdbd;
@@ -2836,18 +2870,50 @@ select.errorcheck{
     color: #bdbdbd;
     font-weight: 100;
 }
+.togglemenu{
+    display: none;
+}
 @media (max-width: 767px){
     .home .footer{
         position: unset;
         padding: 0 15px;
     }
+    .footer{
+        position: absolute;
+        bottom: 5px;
+    }
+    .menuhiden{
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        background: rgba(0,0,0,0.88);
+        z-index: 999;
+        top: 0;
+        left: 0;
+    }
+    .togglemenu{
+        position: fixed;
+        top: 25px;
+        left: 10px;
+        color: #bdbdbd;
+        font-size: 1.78em;
+        text-align: left;
+        padding: 5px;
+        line-height: 0;
+        display: block;
+    }
     .sidebar-left{
-       display: none;
+       width: 280px;
+       position: fixed;
+       z-index: 9999;
+       left:-280px;
+       top: 0;
     }
     .sidebar-left .sidebar {
     background: #fff;
-    width: 100%;
     border: none;
+    position: relative !important;
+    width: 100%;
     }
     .main .content .box{
         display: block;

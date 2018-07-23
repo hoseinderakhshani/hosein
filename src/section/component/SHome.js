@@ -9,46 +9,32 @@ export default class SHome extends Component {
     render(){ 
     return (
     <div>
-            <div className="notice">
-            <div className="head">
-              <span className="active">like</span>
-              <span>follow</span>
-              <span className="active">tiket</span>
-            </div>
-            <div className="text">
-            <ul style={{display : 'block'}}>
-              <li><img src="http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg"/><a href="">milad.akhb</a>شما رو لایک کرد</li>
-              <li><img src="http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg"/><a href="">milad.akhb</a> شما رو لایک کرد</li>
-              <li><img src="http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg"/><a href="">milad.akhb</a> شما رو لایک کرد</li>
-              <li><img src="http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg"/><a href="">milad.akhb</a> شما رو لایک کرد</li>
-              <li><img src="http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg"/><a href="">milad.akhb</a> شما رو لایک کرد</li>
-              <li><img src="http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg"/><a href="">milad.akhb</a> شما رو لایک کرد</li>
-              <li><img src="http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg"/><a href="">milad.akhb</a> شما رو لایک کرد</li>
-              <li><img src="http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg"/><a href="">milad.akhb</a> شما رو لایک کرد</li>
-                
-            </ul>
-            </div>
-            </div>
-            <div className="notice">
-            <div className="head">
-              <span>like</span>
-              <span>follow</span>
-              <span>tiket</span>
-            </div>
-            <div className="text">
-            <ul style={{display : 'none'}}>
-              <li><img src="http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg"/><a href="">milad.akhb</a> شما رو لایک کرد</li>
-              <li><img src="http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg"/><a href="">milad.akhb</a> شما رو لایک کرد</li>
-              <li><img src="http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg"/><a href="">milad.akhb</a> شما رو لایک کرد</li>
-              <li><img src="http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg"/><a href="">milad.akhb</a> شما رو لایک کرد</li>
-              <li><img src="http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg"/><a href="">milad.akhb</a> شما رو لایک کرد</li>
-              <li><img src="http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg"/><a href="">milad.akhb</a> شما رو لایک کرد</li>
-              <li><img src="http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg"/><a href="">milad.akhb</a> شما رو لایک کرد</li>
-              <li><img src="http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg"/><a href="">milad.akhb</a> شما رو لایک کرد</li>
-                
-            </ul>
-            </div>
-            </div>
+          <div class="notification">
+          <div class="box">
+          <div class="image">
+          <img src="/images/noimage.jpg" alt="noimage"/>
+          </div>
+          <span>میلاد شما را دنبال کرد.</span>
+          </div>
+          <div class="box">
+          <div class="image">
+          <img src="/images/noimage.jpg" alt="noimage"/>
+          </div>
+          <span>میلاد شما را دنبال کرد.</span>
+          </div>
+          <div class="box">
+          <div class="image">
+          <img src="/images/noimage.jpg" alt="noimage"/>
+          </div>
+          <span>میلاد شما را دنبال کرد.</span>
+          </div>
+          <div class="box">
+          <div class="image">
+          <img src="/images/noimage.jpg" alt="noimage"/>
+          </div>
+          <span>میلاد شما را دنبال کرد.</span>
+          </div>
+          </div>
         </div> 
         )
     }

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './css/bootstrap.min.css';
 import './css/font-awesome.min.css';
 import './css/style.css';
+import './css/react-datepicker.min.css';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
 import Login from './Login';

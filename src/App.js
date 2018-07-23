@@ -61,6 +61,7 @@ export default class App extends Component {
         return postes;
     }  
   render() {
+      console.log(this.state.data)
     return (
            <div className="container">
         <div className="row justify-content-center">
@@ -70,12 +71,58 @@ export default class App extends Component {
                 </div>
                 <div className="content">
                    <div className="row justify-content-center">
-                    {this.renderAllPosts()}
-                    {this.renderAllClubs()}
-                    {this.renderAllTikets()}
+                   
                  {/**********************  post  *******************/}
+{this.state.data.club_posts===null || this.state.data.posts===null || this.state.data.tickets===0 ? 
+<div class="col-12">
+<div className="box col-md-10" style={{opacity:"0.4"}}>
+<div class="col-md-10" style={{position:"absolute",top:"0",right:"0",height:"100%",zIndex:"999"}}></div>
+        <div className="profile col-md-3">
+             <div className="image">
+             <Link to={`/profile/`}><img src="https://scontent-lga3-1.cdninstagram.com/vp/4b70294ef26ad29343596b058cf7f185/5BEBC424/t51.2885-19/s150x150/29740586_615073335495457_7747543410487066624_n.jpg" alt="noimage"/></Link>
+             </div>
+             <a href="">tripplus</a>
+             <span href="" >2 ساعت پیش</span>
+         </div>
+         <div className="event col-md-9 p-0">
+            <div className="image col-md-4 p-0 float-right">
+            <img src="https://i.pinimg.com/236x/5d/c4/ca/5dc4ca18aef3571b8911d7bb799ed71f.jpg" alt="noimage"/>
+            </div> 
+            <div className="text col-md-8 float-left">
+                <div className="d-flex justify-content-between align-items-center"> 
+                <span className="title ">گردشگری</span>
+                <span className="location">تهران</span>
+                </div> 
+                <Link to="" className="nclb">کوه نوردی</Link>
+                <div className="txt">
+                    <p>
+                    {/* {this.props.details.about} */}
+                    </p>
+                </div>
+               
+            </div>
+             <div className="down col-md-8">
+                 <span><i className="fa fa-ticket"></i>25,000</span>   
+                 {/* <span className="float-left m-0"><i className="fa fa-bookmark"></i></span>   */}
+             </div>
+         </div>
+     </div> 
+         <div class="col-md-10" style={{textAlign:"center"}}>
+         <span>پستی برای شما موجود نمی باشد. شاید به این دلیل میباشد که شما دوستی ندارید</span><br/><br/>
+         <span>شما می توانید با <Link to="/serach" style={{color:"#FFC107"}}>جستجو</Link> کردن دوست یا باشگاه برای خود بیابید.</span>
+         </div>
+         </div>
+         :
+         <div className="col-12">
+         {this.renderAllPosts()}
+         {this.renderAllClubs()}
+         {this.renderAllTikets()}
+         </div>
+} 
 
-                 {/*    <div className="box col-md-10">
+
+
+                    {/* <div className="box col-md-10">
                        <div className="profile col-md-3">
                             <div className="image">
                                 <a href=""><img src="http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg"/></a>
@@ -102,11 +149,11 @@ export default class App extends Component {
                                 <a href="" className="float-left m-0"><i className="fa fa-bookmark"></i></a>
                             </div>
                         </div>                        
-                    </div>*/}
+                    </div>  */}
                     </div>
                 </div>
             </section>
-          
+          <Sidebar home={this.state.app}/>
         </div>
     </div>
        
@@ -199,7 +246,8 @@ class Post extends Component {
              </div>
              <Link to={`/profile/${this.props.post.writer}`}>{this.props.post.writer}</Link>
              <span>
-             <Moment fromNow>{timeEdit}</Moment></span>
+             <Moment fromNow>{timeEdit}</Moment>
+             </span> 
              <div className="clearfix"></div>
          </div>
          <div className="event post col-md-10 p-0">

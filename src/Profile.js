@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import Sidebar from './section/Sidebar';
 import AddPost from './AddPost';
@@ -14,6 +15,7 @@ export default class Profile extends Component {
             profile: true,
             data : '',
             actselect:'',
+            menu: false,
         }
        this.renderPost= this.renderPost.bind(this);   
        this.renderAllPosts = this.renderAllPosts.bind(this);
@@ -57,9 +59,11 @@ export default class Profile extends Component {
            return clubs;
     }  
   render() {
+  
     var checkUser = (localStorage.getItem("userName")===this.props.match.params.id)
     return (
         <div className="container">
+        <div className="menuhiden" style={this.state.menu ? {display:"block"}:{display:"none"}} onClick={()=>this.setState({menu:!this.state.menu})}></div>
         <div className="row justify-content-center">
             <section className="main col-md-8 col-12">
              <div className="header">
@@ -98,7 +102,8 @@ export default class Profile extends Component {
               }  
                   
             </section>
-            <Sidebar prfle={this.state.profile} data={{allData:this.state.data,checkkUser:checkUser}} token={localStorage.getItem('token')}/>
+            <span className="togglemenu" onClick={()=>this.setState({menu:!this.state.menu})}><i class="fa fa-align-left"></i></span>
+            <Sidebar menu={this.state.menu} prfle={this.state.profile} data={{allData:this.state.data,checkkUser:checkUser}} token={localStorage.getItem('token')}/>
         </div>
         {this.state.actselect==="addpost" ? <AddPost close={()=>this.togglePopup("")} token={localStorage.getItem('token')}/>: null}
     {this.state.actselect==="addclub" ? <AddClub close={()=>this.togglePopup("")} token={localStorage.getItem('token')} username={this.props.match.params.id} />: null}

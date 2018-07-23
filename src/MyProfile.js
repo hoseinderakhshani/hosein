@@ -15,6 +15,7 @@ export default class MyProfile extends Component {
             token :  localStorage.getItem('token'),
             data : '',
             actselect:'',
+            menu : false,
         }
        this.renderPost= this.renderPost.bind(this);   
        this.renderAllPosts = this.renderAllPosts.bind(this);
@@ -61,6 +62,7 @@ export default class MyProfile extends Component {
   render() {
     return (
       <div>
+        <div className="menuhiden"></div>
         <div className="container">
         <div className="row justify-content-center">
             <section className="main col-md-8">

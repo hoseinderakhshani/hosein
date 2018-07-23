@@ -16,8 +16,8 @@ export default class Sidebar extends Component {
         }
     }
     render(){ 
-    return (
-        <section className="sidebar-left col-md-3 col-12 row ">  
+        return (
+            <section className="sidebar-left col-md-3 col-12 row" style={window.innerWidth<767 && this.props.menu===true?{left:0}:null}>
         <div className="sidebar" style={this.props.scroll ? {position:"relative",minHeight:window.innerHeight - "190"}:{position:"fixed",minHeight:window.innerHeight}}>
          <div className="sgl-logo">
             <Link onClick={this.forceUpdate} to={`/profile/${this.state.username}`} className="user"><i className="fa fa-user"></i></Link>
@@ -47,6 +47,7 @@ export default class Sidebar extends Component {
                 </div>
             </div>
         </section>
+      
         )
     }
 }

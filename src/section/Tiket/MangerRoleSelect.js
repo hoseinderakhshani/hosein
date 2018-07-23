@@ -45,30 +45,29 @@ export default class MangerRoleSelect extends Component {
  }
  handelsubmit(){
    this.setState({isLoading:true})
+   console.log(this.props.parent.state)
    var dataTiket = new FormData();
    let data = this.props.parent.state
-   let one = this.props.parent.state.description
-   let two = this.props.parent.state.descriptionTwo
-   dataTiket.append('date',data.descriptionTwo.dateStart)
+   dataTiket.append('date',data.dateStart)
    dataTiket.append('name', data.description.title)
    dataTiket.append('body',data.description.text)
-   dataTiket.append('state',data.descriptionTwo.state)
-   dataTiket.append('city',data.descriptionTwo.city)
-   dataTiket.append('address',data.descriptionTwo.location)
-  dataTiket.append('price',data.descriptionTwo.price)
-  dataTiket.append('filter',data.descriptionTwo.filter)
-  dataTiket.append('limit',data.descriptionTwo.limit)
+   dataTiket.append('state',data.state)
+   dataTiket.append('city',data.city)
+   dataTiket.append('address',data.location)
+  dataTiket.append('price',data.price)
+  dataTiket.append('filter',data.filter)
+  dataTiket.append('limit',data.limit)
   dataTiket.append('managers',data.manger)
   dataTiket.append('manager_role',data.role)
-  dataTiket.append('end_date',data.descriptionTwo.dateEnd)
+  dataTiket.append('end_date',data.dateEnd)
   data.description.image===undefined?null:dataTiket.append('avatar',data.description.image)
  axios({
     method: 'post',
     url: `${DataStatic.domainIp}/public/api/v1/event/addticket/${this.props.parent.props.nameClub}?api_token=${this.props.parent.props.token}`,
     data: dataTiket,
-    config: { headers: {'Content-Type': 'multipart/form-data' },"processData": false,
+    config: { headers: {'Content-Type': 'application/x-www-form-urlencoded' },"processData": false,
     "contentType": false,
-    "mimeType": "multipart/form-data"
+    "mimeType": "application/x-www-form-urlencoded"
     }
 })
   .then((response)=> {
@@ -105,7 +104,7 @@ export default class MangerRoleSelect extends Component {
          <li><i className="fa fa-circle"></i></li>
        </ul>
        </div>
-     <button className="next" onClick={this.handelsubmit.bind(this)}>{this.state.isLoading?<div style={{width:"25px",height:"25px"}} class="loading"></div>:<i className="fa fa-angle-left"></i>}</button>
+     <button className="next" onClick={this.handelsubmit.bind(this)}>{this.state.isLoading?<div style={{width:"25px",height:"25px"}} className="loading"></div>:<i className="fa fa-angle-left"></i>}</button>
        </div>
       </div>
       </div>

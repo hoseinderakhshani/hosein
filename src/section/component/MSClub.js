@@ -81,7 +81,7 @@ export default class MSClub extends Component {
                 </ul>
             </div> 
             <div className="clb-des" style={this.state.bio ? {display: 'block'} : {display: 'none'}}>
-              <p>{this.props.data.bio}</p>
+            <p>{this.props.data.bio} </p>
             </div>
             {this.state.MangerShow?
                     <div className="bgadd bgmngr" ref="close" onClick={(e)=>e.target===this.refs.close? this.setState({MangerShow:false}):null}>

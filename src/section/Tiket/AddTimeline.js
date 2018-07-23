@@ -3,7 +3,9 @@ import axios from 'axios';
 import {DataStatic} from '../../StaticData';
 import DatePicker from 'react-datepicker';
 import * as moment from 'jalali-moment';
-moment.locale('fa')
+
+// moment.locale('fa')
+
 export default class AddTimeline extends Component {
   constructor(props) {
     super(props); 
@@ -16,7 +18,7 @@ export default class AddTimeline extends Component {
   get boxTimeline(){
     let showBox= [];
     for(var i=0;i<=this.state.count;i++){
-       showBox.push(<BoxTimeline count={i} parent={this}/>) 
+       showBox.push(<BoxTimeline count={i} parent={this} key={i}/>) 
     }
     return showBox
   }
@@ -107,7 +109,7 @@ class BoxTimeline extends Component {
       imagePreviewUrl:'',
       file:'',
       date:"",
-      time:'',
+      time:"",
       timelineData:[],
     }
     this.handelChange = this.handelChange.bind(this)
@@ -115,7 +117,7 @@ class BoxTimeline extends Component {
     this.handleChangeTime = this.handleChangeTime.bind(this);
   }
   handleChangeDate(date){
-      this.setState({date})
+      this.setState({date:date})
   }
   handleChangeTime(time){
     this.setState({time})
@@ -154,6 +156,7 @@ class BoxTimeline extends Component {
       //  x.setState({timelineData:[...x.state.timelineData,this.state]})
     }
     render() {
+      console.log(this.state.dateads);
       const clickStyle = {
         border : "none",
         background : "none",
@@ -179,7 +182,8 @@ class BoxTimeline extends Component {
         maxDate={moment(vthis.props.parent.state.maxDate)}
         placeholderText="در روز"
         popperPlacement="auto"
-        locale={moment.locale('fa')}
+        dateFormat="YYYY/MM/DD"
+        locale="fa"
     />
         </div>
        <div className="layout" className="layout" style={{width:"calc(100% - 15px)",display:"inline-block"}}> <DatePicker

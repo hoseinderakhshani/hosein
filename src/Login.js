@@ -34,6 +34,7 @@ export default class LandingPage extends Component {
           <div className="row">
           {this.state.select==="login"? <Login page={this.Selection}/>:null}
           {this.state.select==="sign" ? <Sign page={this.Selection}/>:null}
+          {this.state.select==="forget"? <Forget page={this.Selection}/>:null}
           </div>
           <div className="footer" style={{marginTop:"15px"}}>
           <ul>
@@ -133,7 +134,7 @@ class Login extends Component{
        <div className="box">
        <input type="password" name="password" value={this.state.password} onChange={this.handleChange}/><label>رمز عبور</label>
        </div>
-       <span className="forget"><Link to="/">فراموشی رمز عبور؟</Link></span>
+       <span className="forget" onClick={()=>this.props.page("forget")}>فراموشی رمز عبور؟</span>
        <div className="submit">
        <button onClick={()=>this.props.page("sign")}>ثبت نام</button>
        {this.state.isLoading? <button className="active" type="submit"><div style={{width:"15px",height:"15px"}} class="loading"></div>
@@ -155,6 +156,7 @@ class Sign extends Component{
       imagePreviewUrl:'',
       imagePreviewacc: false,
       chekEmaill: false,
+      isLoading:false,
     }
     this.renderPreview= this.renderPreview.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -236,8 +238,9 @@ class Sign extends Component{
           gend=true
       }
     if(gend&&pass&&req&&this.state.chekEmaill&&mxLen){
+      this.setState({isLoading:true})
       var datareg = new FormData();
-      var querystring = require('querystring');
+     
       datareg.append('email',this.state.email)
       datareg.append('username',this.state.username)
       datareg.append('avatar',this.state.file,this.state.file.name)
@@ -254,11 +257,12 @@ class Sign extends Component{
         }
     })
       .then((response)=> {
+        this.setState({isLoading:false})
         if(response.status===200){
           alert("ثبت نام موفق آمیز ")
           setTimeout(()=>{
               window.location.reload()
-          },3500)
+          },1000)
         }else {
           alert("مشکلی پیش آمده کسکم.")
         }
@@ -302,10 +306,92 @@ class Sign extends Component{
          </div>
          <div className="submit">
          <button onClick={()=>page("login")}>ورود</button>
-         <button className="active" type="submit" onClick={this.handleSubmit}>ثبت نام</button>
+        
+         {this.state.isLoading? 
+         <button className="active" type="submit"><div style={{width:"15px",height:"15px"}} class="loading"></div></button>
+       :
+       <button className="active" type="submit" onClick={this.handleSubmit}>ثبت نام</button>
+       }
          </div>
          </div>
         </div>
       )
+  }
+}
+class Forget extends Component{
+  constructor(props){
+  super(props)
+  this.state={
+    forgetPass:"",
+    status : {},
+    isLoading: false,
+  }
+  this.handleChange =this.handleChange.bind(this)
+  }
+  handleChange(ev){
+    if(ev.target.value.includes("@") && ev.target.value.includes("."))
+    ev.target.addEventListener("blur", function( event ) {
+      event.target.style.borderBottom = "1px solid #bdbdbd";
+      event.target.parentElement.children[1].style.color = "#bdbdbd";
+    }, true);
+    else  ev.target.addEventListener("blur", function( event ) {
+      event.target.style.borderBottom = "1px solid #f00";
+      event.target.parentElement.children[1].style.color = "#f00";
+    }, true);
+    this.setState({forgetPass:ev.target.value})
+  }
+  handleSubmit(){
+    if(this.state.forgetPass!==""){
+    var querystring = require('querystring');
+    this.setState({isLoading:true})
+    var obj = {}
+    obj["email"] = this.state.forgetPass
+    axios.post(`${DataStatic.domainIp}/public/api/v1/user/resetPassword`,querystring.stringify(obj),
+    {
+      headers: { 
+        "Content-Type": "application/x-www-form-urlencoded",
+      }
+    })
+    .then((response)=> {
+      this.setState({isLoading:false})
+      if(response.data === "email not found"){
+          this.setState({status : {text:"ایمیل یافت نشد.",color:"#fff",bg:"#f00"}})
+      }else this.setState({status : {text:"لینک بازیابی رمز ورود برای شما ارسال شد.",color:"#fff",bg:"#026d24"}})
+    })
+    .catch( (error)=> {
+      this.setState({status : {text:"مشکلی در ارتباط با سرور رخ داد است.",color:"#000",bg:"#757575"}})
+      console.log("error",error)
+    });
+  }else this.refs.emaili.focus()
+  }
+  render(){
+    const res = {
+      padding: "5px 15px",
+      background: this.state.status.bg,
+      display: "block",
+      textAlign: "center",
+      borderRadius: "4px",
+      color: this.state.status.color,
+    }
+    return(
+      <div className="col-12 d-flex justify-content-md-center mt-5 row" style={{height:window.innerHeight - "250"}}>
+      
+      <div className="col-md-4">
+      <span style={res}>{this.state.status.text}</span>
+       <div className="box">
+       <input ref="emaili" type="mail" name="forgetPass" value={this.state.forgetPass} onInput={this.handleChange}/><label>ایمیل : </label>
+       </div>
+       <div className="submit">
+       <button onClick={()=>this.props.page("sign")}>ثبت نام</button>
+       {/* <button onClick={()=>this.props.page("login")}>ورود</button> */}
+       {this.state.isLoading? <button className="active" type="submit"><div style={{width:"15px",height:"15px",marginRight:"0",borderColor:"#fff"}} class="loading"></div>
+       </button>
+       :
+       <button onClick={this.handleSubmit.bind(this)} className="active" type="submit">ارسال</button>
+    }
+       </div>
+       </div>
+      </div>
+    )
   }
 }
