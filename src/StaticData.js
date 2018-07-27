@@ -1,6 +1,6 @@
 const DataStatic = {
-      domainIp: "http://localhost/payebash5.5",
-      domainName: "http://192.168.1.14/payebash5.5",     
+      domainIp: "95.211.224.72:8080/payebash5.5",
+      domainName: "95.211.224.72:8080/payebash5.5",     
 }
 const StorageData ={
       avatarMedium: "storage/users/avatar/medium",
